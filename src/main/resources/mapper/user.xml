@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 반드시 세미콜론 생략  -->
+<mapper namespace="com.temco.bank_app.repository.interfaces.UserRepository">
+	
+	
+	<!-- 회원 가입 -->
+	<insert id="insert">
+		insert into user_tb(username, password, fullname, origin_file_name, upload_file_name, created_at)
+		values(#{username}, #{password}, #{fullname}, #{originFileName}, #{uploadFileName}, now())      		
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateById">
+		update user_tb set username = #{username},
+						   password = #{password},
+						   fullname = #{fullname}
+        where id = #{id}
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="deleteById">
+		delete from user_tb where id = #{id}
+	</delete>
+	
+	<!-- 사용자 1명  -->
+	<select id="findById" resultType="com.temco.bank_app.repository.entity.User">
+		select * from user_tb where id = #{id}
+	</select>
+	
+	<!-- 사용자 전체 조회 -->
+	<select id="findAll" resultType="com.temco.bank_app.repository.entity.User">
+		select * from user_tb
+	</select>
+	
+	<!-- 로그인 -->
+	<select id="findByUsernameAndPassword" resultType="com.temco.bank_app.repository.entity.User">
+		select * from user_tb where username = #{username} and password = #{password}
+	</select>
+	
+	<!--  username 으로 사용자 검색 -->
+	<select id="findByUsername" resultType="com.temco.bank_app.repository.entity.User">
+		select * from user_tb where username = #{username}
+	</select>
+	
+	
+
+</mapper>

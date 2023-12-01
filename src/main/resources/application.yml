@@ -1,0 +1,70 @@
+# key와 value 사이에는 한 칸이 띄워져 있어야 합니다.(엄격한 규칙)
+# yml 파일은 json 형식과 다르게 중괄호{} 없이 스페이스 2칸 입니다.
+
+# mybank
+server:
+  port: 80
+  servlet:
+    encoding: 
+      charset: utf-8
+      force: true 
+      
+spring: 
+  mvc:
+    view:
+      prefix: /WEB-INF/view/
+      suffix: .jsp
+  
+  # 파일 업로드 설정
+  servlet:
+      multipart:
+        max-file-size: 20MB # 최대 20MB
+        max-request-size: 20MB    
+         
+  datasource:
+    url: jdbc:mysql://localhost:3306/mybank?serverTimeZone=Asia/Seoul
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: asd1234
+    
+    
+ 
+#  sql:
+#    init:
+#      schema-locations:
+#      - classpath:db/table.sql
+#      data-locations:
+#      - classpath:db/data.sql
+     
+#   h2: 
+#     console:
+#       enabled: true
+#     output: 
+#       ansi:
+#       enabled: always
+
+
+
+#classpath는 리소스까지임
+mybatis:
+  mapper-locations:
+  - classpath:mapper/**.xml
+  
+# 카멜표기법을 편하게 해줌
+  configuration:
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    
+logging:
+  level:
+    org.mybatis: DEBUG
+   
+# 초기 파라미터 설정 (key값을 해시함수생성기에서 해시코드로 변환핸다.)
+tenco:
+  key: 150A0D3EC31A459C6171663BD0990CD382C471DF8F4D19C2C5E6EF3C40D40E37
+
+
+
+
+   
+   
